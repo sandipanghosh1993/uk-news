@@ -23,7 +23,9 @@ export async function fetchNewsList() {
 
 export async function fetchSearchedNews(text: string) {
   try {
-    const response = await axios.post(ROOT_URL, { text, language: 'en' });
+    const response = await axios.get(`${ROOT_URL}\search`, {
+      params: { text, language: 'en' }
+    });
     return {
       type: SEARCHED_NEWS,
       payload: response
