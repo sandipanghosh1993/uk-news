@@ -1,5 +1,6 @@
 import React from 'react';
 import NewsList from './NewsList';
+import SearchBox from './SearchBox';
 
 interface HomeProps {}
 
@@ -13,9 +14,13 @@ class Home extends React.PureComponent<HomeProps, HomeState> {
 
   public render() {
     return (
-      <React.Fragment>
+      <div className="homepage">
+        <h1 style={{ textAlign: 'center' }}>
+          <strong>UK News</strong>
+        </h1>
+        <SearchBox />
         <NewsList />
-      </React.Fragment>
+      </div>
     );
   }
 }

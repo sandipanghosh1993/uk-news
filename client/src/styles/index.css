@@ -15,9 +15,13 @@ code {
 .newstitle {
   cursor: pointer;
   padding: 25px;
-  max-width: 50rem;
 }
 
 .newstitle:hover h5 {
   color: #337cff;
+}
+
+.homepage {
+  max-width: 50rem;
+  margin: auto;
 }
