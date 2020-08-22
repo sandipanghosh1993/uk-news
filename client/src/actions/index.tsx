@@ -1,7 +1,12 @@
-import { NEWS_LIST, SEARCHED_NEWS } from './types';
+import {
+  NEWS_LIST,
+  SEARCHED_NEWS,
+  DISPLAY_FULL_ARTICLE,
+  FULL_ARTICLE_CONTENT
+} from './types';
 import axios from 'axios';
 
-const ROOT_URL = 'http://localhost:8000/';
+const ROOT_URL = 'http://localhost:8000';
 
 export async function fetchNewsList() {
   try {
@@ -23,7 +28,7 @@ export async function fetchNewsList() {
 
 export async function fetchSearchedNews(text: string) {
   try {
-    const response = await axios.get(`${ROOT_URL}\search`, {
+    const response = await axios.get(`${ROOT_URL}/search`, {
       params: { text, language: 'en' }
     });
     return {
@@ -33,4 +38,56 @@ export async function fetchSearchedNews(text: string) {
   } catch (error) {
     console.error(error);
   }
+}
+
+export function displayFullArticle(
+  title: string,
+  author: string,
+  publishedAt: string,
+  urlToImage: string,
+  url: string
+) {
+  return {
+    type: DISPLAY_FULL_ARTICLE,
+    payload: {
+      title,
+      author,
+      publishedAt,
+      urlToImage,
+      url
+    }
+  };
+}
+
+export async function fetchFullArticleContent(url: string) {
+  try {
+    const response = await axios.get(`${ROOT_URL}/fullarticle`, {
+      params: { url }
+    });
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(response.data, 'text/html');
+    const pTags: any = doc.body.getElementsByTagName('p');
+    let content = '';
+    for (const el of pTags) {
+      const text = el.innerText;
+      if (text.trim() == text) {
+        content += ' ' + text;
+      }
+    }
+    return {
+      type: FULL_ARTICLE_CONTENT,
+      payload: {
+        content
+      }
+    };
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export function resetContent() {
+  return {
+    type: FULL_ARTICLE_CONTENT,
+    payload: null
+  };
 }

@@ -14,7 +14,7 @@ class Home extends React.PureComponent<HomeProps, HomeState> {
 
   public render() {
     return (
-      <div className="homepage">
+      <div className="outerdiv">
         <h1 style={{ textAlign: 'center' }}>
           <strong>UK News</strong>
         </h1>

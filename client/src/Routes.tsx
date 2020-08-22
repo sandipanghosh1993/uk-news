@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './components/Home';
-// import Question from './components/Question';
+import FullArticle from './components/FullArticle';
 // import Result from './components/Result';
 
 const Routes: React.FC = () => {
@@ -9,7 +9,7 @@ const Routes: React.FC = () => {
     <BrowserRouter>
       <div>
         <Switch>
-          {/*<Route path="/fullarticle" component={Result} />*/}
+          <Route path="/fullarticle" component={FullArticle} />
           <Route path="/" component={Home} />
         </Switch>
       </div>

@@ -60,7 +60,7 @@ class SearchBox extends React.PureComponent<SearchBoxProps, SearchBoxState> {
 }
 
 function mapDispatchToProps(dispatch: any) {
-  return bindActionCreators({ fetchSearchedNews: fetchSearchedNews }, dispatch);
+  return bindActionCreators({ fetchSearchedNews }, dispatch);
 }
 
 export default connect(null, mapDispatchToProps)(SearchBox);

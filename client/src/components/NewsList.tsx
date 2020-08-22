@@ -22,10 +22,10 @@ class NewsList extends React.PureComponent<NewsListProps, NewsListState> {
     if (this.props.fetchNewsList) this.props.fetchNewsList();
   }
 
-  public static getDerivedStateFromProps(prevProps: any, nextState: any) {
-    console.log('-------->', prevProps.newsList);
-    return null;
-  }
+  // public static getDerivedStateFromProps(prevProps: any, nextState: any) {
+  //   console.log('-------->', prevProps.newsList);
+  //   return null;
+  // }
 
   public render() {
     // if (this.state.redirect) {
@@ -42,6 +42,8 @@ class NewsList extends React.PureComponent<NewsListProps, NewsListState> {
                 description={el.description}
                 publishedAt={el.publishedAt}
                 urlToImage={el.urlToImage}
+                url={el.url}
+                author={el.author}
               />
             </div>
           );
@@ -58,7 +60,7 @@ function mapStateToProps(state: any) {
 }
 
 function mapDispatchToProps(dispatch: any) {
-  return bindActionCreators({ fetchNewsList: fetchNewsList }, dispatch);
+  return bindActionCreators({ fetchNewsList }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewsList);
