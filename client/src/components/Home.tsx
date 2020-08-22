@@ -1,6 +1,6 @@
-import React from 'react';
-import NewsList from './NewsList';
+import React, { Suspense } from 'react';
 import SearchBox from './SearchBox';
+const NewsList = React.lazy(() => import('./NewsList'));
 
 interface HomeProps {}
 
@@ -19,7 +19,11 @@ class Home extends React.PureComponent<HomeProps, HomeState> {
           <strong>UK News</strong>
         </h1>
         <SearchBox />
-        <NewsList />
+        <Suspense
+          fallback={<div style={{ textAlign: 'center' }}>Loading...</div>}
+        >
+          <NewsList />
+        </Suspense>
       </div>
     );
   }
