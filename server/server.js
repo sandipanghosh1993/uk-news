@@ -1,14 +1,14 @@
 require('./config/config');
 const express = require('express');
 const fetch = require('node-fetch');
-const bodyParser = require('body-parser');
+//const bodyParser = require('body-parser');
 const NewsAPI = require('newsapi');
 const newsapi = new NewsAPI('085579c16f7a4c43b7ed23a199f8305e');
 
 const app = express();
 const port = process.env.PORT;
 
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -29,19 +29,14 @@ const filterArticle = el =>
 
 app.get('/', async (req, res) => {
   try {
-    const defaultPageSize = 30;
     const { pageSize, language, country } = req.query;
-    const newPageSize =
-      req.query.pageSize > defaultPageSize
-        ? req.query.pageSize
-        : defaultPageSize;
     const headlines = await newsapi.v2.topHeadlines({
-      pageSize: newPageSize,
+      pageSize,
       language,
       country
     });
     const newList = headlines.articles.filter(filterArticle);
-    return res.status(200).send(newList.slice(0, pageSize));
+    return res.status(200).send(newList);
   } catch (err) {
     return res.status(500).send('Server Error!');
   }
