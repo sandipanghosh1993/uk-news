@@ -69,10 +69,7 @@ export async function fetchFullArticleContent(url: string) {
     const pTags: any = doc.body.getElementsByTagName('p');
     let content = '';
     for (const el of pTags) {
-      const text = el.innerText;
-      if (text.trim() == text) {
-        content += ' ' + text;
-      }
+      content += ' ' + el.innerText.trim();
     }
     return {
       type: FULL_ARTICLE_CONTENT,
