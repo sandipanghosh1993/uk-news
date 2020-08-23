@@ -28,7 +28,7 @@ class FullArticleContent extends React.PureComponent<
     }
     return (
       <div
-        style={{ fontSize: '18px', paddingTop: '15px', paddingBottom: '10px' }}
+        style={{ fontSize: '18px', paddingTop: '15px', paddingBottom: '10px', textAlign: 'justify' }}
       >
         <p>{this.props.fullArticleContent?.content}</p>
       </div>
