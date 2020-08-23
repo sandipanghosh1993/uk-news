@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './components/Home';
 import FullArticle from './components/FullArticle';
-// import Result from './components/Result';
 
 const Routes: React.FC = () => {
   return (

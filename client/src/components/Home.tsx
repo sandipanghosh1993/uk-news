@@ -1,13 +1,12 @@
 import React, { Suspense } from 'react';
+import Header from './Header';
 import SearchBox from './SearchBox';
 const NewsList = React.lazy(() => import('./NewsList'));
 
 const Home: React.FC = () => {
   return (
     <div className="outerdiv">
-      <h1 style={{ textAlign: 'center' }}>
-        <strong>UK News</strong>
-      </h1>
+      <Header />
       <SearchBox />
       <Suspense
         fallback={<div style={{ textAlign: 'center' }}>Loading...</div>}

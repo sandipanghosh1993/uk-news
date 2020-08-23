@@ -3,6 +3,7 @@ import { Container, Image, Button } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Header from './Header';
 import FullArticleContent from './FullArticleContent';
 import { resetContent } from '../actions';
 
@@ -53,9 +54,7 @@ class FullArticle extends React.PureComponent<
           </Button>
         </div>
         <div className="outerdiv">
-          <h1 style={{ textAlign: 'center' }}>
-            <strong>UK News</strong>
-          </h1>
+          <Header />
           <hr />
           <Container>
             <h1>{this.props.fullArticle?.title}</h1>
