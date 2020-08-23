@@ -23,7 +23,7 @@ class SearchBox extends React.PureComponent<SearchBoxProps, SearchBoxState> {
   }
 
   public componentDidUpdate() {
-    if(!this.state.text && this.props.fetchNewsList) {
+    if (!this.state.text && this.props.fetchNewsList) {
       this.props.fetchNewsList();
     }
   }

@@ -73,8 +73,8 @@ class FullArticle extends React.PureComponent<
             </p>
             <Image
               src={this.props.fullArticle?.urlToImage}
-              width='100%'
-              height='auto'
+              width="100%"
+              height="auto"
             />
             <FullArticleContent />
             <p>

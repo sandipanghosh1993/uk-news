@@ -1,5 +1,4 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchNewsList } from '../actions/index';
@@ -10,27 +9,18 @@ interface NewsListProps {
   newsList?: any;
 }
 
-interface NewsListState {}
-
-class NewsList extends React.PureComponent<NewsListProps, NewsListState> {
+class NewsList extends React.PureComponent<NewsListProps, {}> {
   public constructor(props: NewsListProps) {
     super(props);
-    this.state = {};
   }
 
   public componentDidMount() {
-    if (this.props.fetchNewsList) this.props.fetchNewsList();
+    if (this.props.fetchNewsList) {
+      this.props.fetchNewsList();
+    }
   }
 
-  // public static getDerivedStateFromProps(prevProps: any, nextState: any) {
-  //   console.log('-------->', prevProps.newsList);
-  //   return null;
-  // }
-
   public render() {
-    // if (this.state.redirect) {
-    //   return <Redirect to={this.state.redirect} />;
-    // }
     return (
       <React.Fragment>
         {this.props.newsList?.data?.map((el: any, index: number) => {
