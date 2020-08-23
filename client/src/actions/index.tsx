@@ -79,6 +79,12 @@ export async function fetchFullArticleContent(url: string) {
     };
   } catch (error) {
     console.error(error);
+    return {
+      type: FULL_ARTICLE_CONTENT,
+      payload: {
+        content: 'ERROR: Unable to fetch content'
+      }
+    };
   }
 }
 

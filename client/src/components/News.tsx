@@ -29,25 +29,19 @@ class News extends React.PureComponent<NewsProps, NewsState> {
     };
   }
 
+  public handleClick() {
+    const { title, author, publishedAt, urlToImage, url } = this.props;
+    this.props.displayFullArticle(title, author, publishedAt, urlToImage, url);
+    this.props.fetchFullArticleContent(url);
+    this.setState({ redirect: '/fullarticle' });
+  }
+
   public render() {
     if (this.state.redirect) {
       return <Redirect to={this.state.redirect} />;
     }
     return (
-      <Container
-        onClick={() => {
-          const { title, author, publishedAt, urlToImage, url } = this.props;
-          this.props.displayFullArticle(
-            title,
-            author,
-            publishedAt,
-            urlToImage,
-            url
-          );
-          this.props.fetchFullArticleContent(url);
-          this.setState({ redirect: '/fullarticle' });
-        }}
-      >
+      <Container onClick={this.handleClick.bind(this)}>
         <Row className="newstitle">
           <Col sm={9} md={9} lg={9}>
             <p
