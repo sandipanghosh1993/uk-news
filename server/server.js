@@ -1,14 +1,11 @@
 require('./config/config');
 const express = require('express');
 const fetch = require('node-fetch');
-//const bodyParser = require('body-parser');
 const NewsAPI = require('newsapi');
 const newsapi = new NewsAPI('085579c16f7a4c43b7ed23a199f8305e');
 
 const app = express();
 const port = process.env.PORT;
-
-// app.use(bodyParser.json());
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
