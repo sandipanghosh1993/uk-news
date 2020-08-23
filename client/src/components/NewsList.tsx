@@ -21,6 +21,13 @@ class NewsList extends React.PureComponent<NewsListProps, {}> {
   }
 
   public render() {
+    if (this.props.newsList?.data?.length === 0) {
+      return (
+        <h4 style={{ textAlign: 'center', paddingTop: '5rem' }}>
+          No News Found
+        </h4>
+      );
+    }
     return (
       <React.Fragment>
         {this.props.newsList?.data?.map((el: any, index: number) => {
