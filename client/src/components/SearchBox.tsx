@@ -2,11 +2,12 @@ import React from 'react';
 import { Image, InputGroup, FormControl, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchSearchedNews } from '../actions/index';
+import { fetchSearchedNews, fetchNewsList } from '../actions/index';
 import NewsList from './NewsList';
 
 interface SearchBoxProps {
   fetchSearchedNews?: Function;
+  fetchNewsList?: Function;
 }
 
 interface SearchBoxState {
@@ -19,6 +20,12 @@ class SearchBox extends React.PureComponent<SearchBoxProps, SearchBoxState> {
     this.state = {
       text: ''
     };
+  }
+
+  public componentDidUpdate() {
+    if(!this.state.text && this.props.fetchNewsList) {
+      this.props.fetchNewsList();
+    }
   }
 
   public render() {
@@ -38,7 +45,6 @@ class SearchBox extends React.PureComponent<SearchBoxProps, SearchBoxState> {
           type="search"
           aria-label="search"
           onChange={(event: any) => {
-            console.log(event.target.value);
             this.setState({ text: event.target.value.trim() });
           }}
         />
@@ -60,7 +66,7 @@ class SearchBox extends React.PureComponent<SearchBoxProps, SearchBoxState> {
 }
 
 function mapDispatchToProps(dispatch: any) {
-  return bindActionCreators({ fetchSearchedNews }, dispatch);
+  return bindActionCreators({ fetchSearchedNews, fetchNewsList }, dispatch);
 }
 
 export default connect(null, mapDispatchToProps)(SearchBox);
