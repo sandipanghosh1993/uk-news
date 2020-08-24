@@ -12,9 +12,9 @@ const FullArticleContent: React.FC<FullArticleContentProps> = (
   if (!props.fullArticleContent) {
     return (
       <div style={{ textAlign: 'center', height: '50vh', marginTop: '25vh' }}>
-        <Spinner animation="grow" size="sm" />{' '}
-        <Spinner animation="grow" size="sm" />{' '}
-        <Spinner animation="grow" size="sm" />{' '}
+        <Spinner animation="grow" size="sm" role="status" />{' '}
+        <Spinner animation="grow" size="sm" role="status" />{' '}
+        <Spinner animation="grow" size="sm" role="status" />{' '}
       </div>
     );
   }
