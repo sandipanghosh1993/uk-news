@@ -5,20 +5,32 @@ const utils = require('./utils');
 const app = express();
 const port = process.env.PORT;
 
+/**
+ * Add headers
+ */
 app.use((req, res, next) => {
+  // Website we wish to allow to connect
   res.setHeader('Access-Control-Allow-Origin', '*');
+  // Request methods we wish to allow
   res.setHeader(
     'Access-Control-Allow-Methods',
     'GET, POST, OPTIONS, PUT, PATCH, DELETE'
   );
+  // Request headers we wish to allow
   res.setHeader(
     'Access-Control-Allow-Headers',
     'X-Requested-With,content-type'
   );
+  // Set to true if we need the website to include cookies in the requests sent
+  // to the API (e.g. in case we use sessions)
   res.setHeader('Access-Control-Allow-Credentials', true);
+  // Pass to next layer of middleware
   next();
 });
 
+/**
+ * Route to get top headlines
+ */
 app.get('/', async (req, res) => {
   try {
     const { pageSize, language, country } = req.query;
@@ -30,6 +42,9 @@ app.get('/', async (req, res) => {
   }
 });
 
+/**
+ * Route to get headlines based on search text
+ */
 app.get('/search', async (req, res) => {
   try {
     const { text, language } = req.query;
@@ -41,6 +56,9 @@ app.get('/search', async (req, res) => {
   }
 });
 
+/**
+ * Route to get raw html page for a particular article
+ */
 app.get('/fullarticle', async (req, res) => {
   try {
     const { url } = req.query;
