@@ -4,10 +4,10 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "export NODE_ENV=test || set \"NODE_ENV=test\" && mocha tests/**/*.test.js",
     "dev": "nodemon server.js",
     "start": "node server.js",
-    "prettier": "prettier --write *.{js,jsx,ts,tsx,json,css}"
+    "prettier": "prettier --write **/*.{js,jsx,ts,tsx,json,css}"
   },
   "author": "Sandipan Ghosh",
   "license": "ISC",
@@ -18,6 +18,10 @@
     "prettier": "^1.19.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4"
+    "chai": "^4.2.0",
+    "mocha": "^3.4.2",
+    "nodemon": "^2.0.4",
+    "sinon": "^9.0.3",
+    "supertest": "^3.0.0"
   }
 }
