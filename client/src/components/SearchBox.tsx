@@ -28,6 +28,13 @@ class SearchBox extends React.PureComponent<SearchBoxProps, SearchBoxState> {
     }
   }
 
+  public handleButtonPress(event: any) {
+    event.preventDefault();
+    if (this.props.fetchSearchedNews) {
+      this.props.fetchSearchedNews(this.state.text);
+    }
+  }
+
   public render() {
     return (
       <InputGroup className="searchbox">
@@ -47,15 +54,17 @@ class SearchBox extends React.PureComponent<SearchBoxProps, SearchBoxState> {
           onChange={(event: any) => {
             this.setState({ text: event.target.value.trim() });
           }}
+          onKeyPress={(event: any) => {
+            if (event.charCode === 13 && event.target.value.trim()) {
+              this.handleButtonPress(event);
+            }
+          }}
         />
         <InputGroup.Append>
           <Button
             disabled={!this.state.text}
             variant="outline-secondary"
-            onClick={(event: any) => {
-              if (this.props.fetchSearchedNews)
-                this.props.fetchSearchedNews(this.state.text);
-            }}
+            onClick={this.handleButtonPress.bind(this)}
           >
             Go
           </Button>
