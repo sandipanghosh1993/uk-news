@@ -26,7 +26,6 @@ app.get('/', async (req, res) => {
     const filteredNews = headlines.articles.filter(utils.filterArticle);
     return res.status(200).send(filteredNews);
   } catch (err) {
-    console.error(err);
     return res.status(500).send('Server Error!');
   }
 });
@@ -38,7 +37,6 @@ app.get('/search', async (req, res) => {
     const filteredNews = headlines.articles.filter(utils.filterArticle);
     return res.status(200).send(filteredNews);
   } catch (err) {
-    console.error(err);
     return res.status(500).send('Server Error!');
   }
 });
@@ -49,7 +47,6 @@ app.get('/fullarticle', async (req, res) => {
     const body = await utils.getFullArticleContent(url);
     res.status(200).send(body);
   } catch (err) {
-    console.log(err);
     return res.status(500).send('Server Error!');
   }
 });

@@ -8,8 +8,13 @@ const invalidData = require('./data/invalidData');
 const mockData = { articles: [...validData, ...invalidData] };
 
 describe('GET /', () => {
+  let stubFn;
+  before(() => {
+    stubFn = sinon.stub(utils, 'getTopHeadlines');
+  });
+
   it('should fetch Top Headlines', done => {
-    sinon.stub(utils, 'getTopHeadlines').callsFake(() => {
+    stubFn.callsFake(() => {
       return mockData;
     });
 
@@ -23,11 +28,27 @@ describe('GET /', () => {
         done();
       });
   });
+
+  it('should handle serevr error', done => {
+    stubFn.callsFake(() => {
+      throw 'err';
+    });
+
+    request(app)
+      .get('/')
+      .expect(500)
+      .end(done);
+  });
 });
 
 describe('GET /search', () => {
+  let stubFn;
+  before(() => {
+    stubFn = sinon.stub(utils, 'getSearchedHeadlines');
+  });
+
   it('should fetch Searched Headlines', done => {
-    sinon.stub(utils, 'getSearchedHeadlines').callsFake(() => {
+    stubFn.callsFake(() => {
       return mockData;
     });
 
@@ -41,12 +62,28 @@ describe('GET /search', () => {
         done();
       });
   });
+
+  it('should handle serevr error', done => {
+    stubFn.callsFake(() => {
+      throw 'err';
+    });
+
+    request(app)
+      .get('/search')
+      .expect(500)
+      .end(done);
+  });
 });
 
 describe('GET /fullarticle', () => {
+  let stubFn;
+  before(() => {
+    stubFn = sinon.stub(utils, 'getFullArticleContent');
+  });
+
   it('should fetch Full Content', done => {
     const data = 'fake content';
-    sinon.stub(utils, 'getFullArticleContent').callsFake(() => {
+    stubFn.callsFake(() => {
       return data;
     });
 
@@ -59,5 +96,16 @@ describe('GET /fullarticle', () => {
         expect(res.text).to.equal(data);
         done();
       });
+  });
+
+  it('should handle serevr error', done => {
+    stubFn.callsFake(() => {
+      throw 'err';
+    });
+
+    request(app)
+      .get('/fullarticle')
+      .expect(500)
+      .end(done);
   });
 });
