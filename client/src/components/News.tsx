@@ -54,7 +54,15 @@ class News extends React.PureComponent<NewsProps, NewsState> {
               {this.props.source}
             </p>
             <h5>{this.props.title}</h5>
-            <p style={{ color: '#70757a' }}>{this.props.description}</p>
+            <p
+              style={{
+                color: '#70757a',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis'
+              }}
+            >
+              {this.props.description}
+            </p>
             <p
               style={{ fontSize: '12px', marginTop: '-10px', color: '#808080' }}
             >
