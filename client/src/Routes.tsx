@@ -3,6 +3,11 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './components/Home';
 import FullArticle from './components/FullArticle';
 
+/**
+ * @function Routes
+ *
+ * Routes to navigate between pages
+ */
 const Routes: React.FC = () => {
   return (
     <BrowserRouter>
