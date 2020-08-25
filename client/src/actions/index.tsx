@@ -8,6 +8,9 @@ import axios from 'axios';
 
 const ROOT_URL = 'http://localhost:8000';
 
+/**
+ * Action creator to fetch top headlines
+ */
 export async function fetchNewsList() {
   try {
     const response = await axios.get(ROOT_URL, {
@@ -26,6 +29,9 @@ export async function fetchNewsList() {
   }
 }
 
+/**
+ * Action creator to fetch headlines based on searched text
+ */
 export async function fetchSearchedNews(text: string) {
   try {
     const response = await axios.get(`${ROOT_URL}/search`, {
@@ -40,6 +46,10 @@ export async function fetchSearchedNews(text: string) {
   }
 }
 
+/**
+ * Action creator to send data to the reducer to show full article content
+ * apart from text
+ */
 export function displayFullArticle(
   title: string,
   author: string,
@@ -59,6 +69,10 @@ export function displayFullArticle(
   };
 }
 
+/**
+ * Action creator to fetch raw html from backend and parse it to extract
+ * content text
+ */
 export async function fetchFullArticleContent(url: string) {
   try {
     const response = await axios.get(`${ROOT_URL}/fullarticle`, {
@@ -88,6 +102,9 @@ export async function fetchFullArticleContent(url: string) {
   }
 }
 
+/**
+ * Action creator to reset the full article content text
+ */
 export function resetContent() {
   return {
     type: FULL_ARTICLE_CONTENT,
