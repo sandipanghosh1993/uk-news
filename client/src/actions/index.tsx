@@ -70,8 +70,7 @@ export function displayFullArticle(
 }
 
 /**
- * Action creator to fetch raw html from backend and parse it to extract
- * content text
+ * Action creator to fetch raw html from backend and parse it to extract text
  */
 export async function fetchFullArticleContent(url: string) {
   try {

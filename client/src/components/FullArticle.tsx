@@ -47,7 +47,7 @@ class FullArticle extends React.PureComponent<
   }
 
   public render() {
-    if (this.state.redirect) {
+    if (this.state.redirect || this.props.fullArticle === null) {
       return <Redirect to={this.state.redirect} />;
     }
     return (
