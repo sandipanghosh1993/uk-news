@@ -4,11 +4,21 @@ import { bindActionCreators } from 'redux';
 import { fetchNewsList } from '../actions/index';
 import News from './News';
 
+/**
+ * @interface NewsListProps
+ *
+ * Props received by NewsList
+ */
 interface NewsListProps {
   fetchNewsList?: Function;
   newsList?: any;
 }
 
+/**
+ * @class NewsList
+ *
+ * Component to render list of news
+ */
 class NewsList extends React.PureComponent<NewsListProps, {}> {
   public constructor(props: NewsListProps) {
     super(props);

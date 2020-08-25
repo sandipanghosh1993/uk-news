@@ -7,15 +7,30 @@ import Header from './Header';
 import FullArticleContent from './FullArticleContent';
 import { resetContent } from '../actions';
 
+/**
+ * @interface FullArticleProps
+ *
+ * Props received by FullArticle
+ */
 interface FullArticleProps {
   fullArticle: any;
   resetContent?: Function;
 }
 
+/**
+ * @interface FullArticleState
+ *
+ * Props set in FullArticle state
+ */
 interface FullArticleState {
   redirect: string;
 }
 
+/**
+ * @class FullArticle
+ *
+ * Component to render full article
+ */
 class FullArticle extends React.PureComponent<
   FullArticleProps,
   FullArticleState

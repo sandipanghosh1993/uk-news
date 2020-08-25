@@ -103,7 +103,7 @@ export async function fetchFullArticleContent(url: string) {
 }
 
 /**
- * Action creator to reset the full article content text
+ * Action creator to reset the full article text
  */
 export function resetContent() {
   return {

@@ -2,10 +2,20 @@ import React from 'react';
 import { Spinner } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
+/**
+ * @interface FullArticleContentProps
+ *
+ * Props received by FullArticleContent
+ */
 interface FullArticleContentProps {
   fullArticleContent: any;
 }
 
+/**
+ * @function FullArticleContent
+ *
+ * Component to render full article text
+ */
 const FullArticleContent: React.FC<FullArticleContentProps> = (
   props: FullArticleContentProps
 ) => {

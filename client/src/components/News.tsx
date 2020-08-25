@@ -5,6 +5,11 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { displayFullArticle, fetchFullArticleContent } from '../actions/index';
 
+/**
+ * @interface NewsProps
+ *
+ * Props received by News
+ */
 interface NewsProps {
   source: string;
   title: string;
@@ -17,10 +22,20 @@ interface NewsProps {
   fetchFullArticleContent: Function;
 }
 
+/**
+ * @interface NewsState
+ *
+ * Props set in News state
+ */
 interface NewsState {
   redirect: string;
 }
 
+/**
+ * @class News
+ *
+ * Component to render individual news
+ */
 class News extends React.PureComponent<NewsProps, NewsState> {
   public constructor(props: NewsProps) {
     super(props);

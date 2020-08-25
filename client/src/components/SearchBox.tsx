@@ -5,15 +5,30 @@ import { bindActionCreators } from 'redux';
 import { fetchSearchedNews, fetchNewsList } from '../actions/index';
 import NewsList from './NewsList';
 
+/**
+ * @interface SearchBoxProps
+ *
+ * Props received by SearchBox
+ */
 interface SearchBoxProps {
   fetchSearchedNews?: Function;
   fetchNewsList?: Function;
 }
 
+/**
+ * @interface SearchBoxState
+ *
+ * Props set in SearchBox state
+ */
 interface SearchBoxState {
   text: string;
 }
 
+/**
+ * @class SearchBox
+ *
+ * Component to render a search field to filter out news based on search text
+ */
 class SearchBox extends React.PureComponent<SearchBoxProps, SearchBoxState> {
   public constructor(props: SearchBoxProps) {
     super(props);
