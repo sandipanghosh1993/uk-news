@@ -1,7 +1,7 @@
 const expect = require('chai').expect;
 const sinon = require('sinon');
 const request = require('supertest');
-const utils = require('../utils');
+const utils = require('../utils/commonUtils');
 const { app } = require('../server');
 const validData = require('./data/validData');
 const invalidData = require('./data/invalidData');

@@ -1,6 +1,6 @@
 require('./config/config');
 const express = require('express');
-const utils = require('./utils');
+const utils = require('./utils/commonUtils');
 
 const app = express();
 const port = process.env.PORT;
