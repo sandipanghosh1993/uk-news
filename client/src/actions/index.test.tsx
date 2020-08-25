@@ -2,14 +2,16 @@ import {
   NEWS_LIST,
   SEARCHED_NEWS,
   DISPLAY_FULL_ARTICLE,
-  FULL_ARTICLE_CONTENT
+  FULL_ARTICLE_CONTENT,
+  SET_SEARCH_TEXT
 } from './types';
 import {
   fetchNewsList,
   fetchSearchedNews,
   fetchFullArticleContent,
   displayFullArticle,
-  resetContent
+  resetContent,
+  setSearchText
 } from './index';
 import axios from 'axios';
 
@@ -118,6 +120,17 @@ describe('Actions', () => {
 
     it('should return the correct payload', () => {
       expect(action.payload).toBeNull();
+    });
+  });
+
+  describe('setSearchText', () => {
+    const action = setSearchText();
+    it('should return the correct type', () => {
+      expect(action.type).toBe(SET_SEARCH_TEXT);
+    });
+
+    it('should return the correct payload', () => {
+      expect(action.payload.text).toEqual('');
     });
   });
 });

@@ -2,7 +2,11 @@ import React from 'react';
 import { Image, InputGroup, FormControl, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchSearchedNews, fetchNewsList } from '../actions/index';
+import {
+  fetchSearchedNews,
+  fetchNewsList,
+  setSearchText
+} from '../actions/index';
 import NewsList from './NewsList';
 
 /**
@@ -11,8 +15,10 @@ import NewsList from './NewsList';
  * Props received by SearchBox
  */
 interface SearchBoxProps {
-  fetchSearchedNews?: Function;
-  fetchNewsList?: Function;
+  fetchSearchedNews: Function;
+  fetchNewsList: Function;
+  setSearchText: Function;
+  searchText: any;
 }
 
 /**
@@ -33,20 +39,23 @@ class SearchBox extends React.PureComponent<SearchBoxProps, SearchBoxState> {
   public constructor(props: SearchBoxProps) {
     super(props);
     this.state = {
-      text: ''
+      text: props.searchText.text
     };
   }
 
   public componentDidUpdate() {
-    if (!this.state.text && this.props.fetchNewsList) {
+    // populate the news list with latest news when search text is cleared
+    if (!this.state.text && this.props.searchText.text) {
       this.props.fetchNewsList();
+      this.props.setSearchText();
     }
   }
 
   public handleButtonPress(event: any) {
     event.preventDefault();
-    if (this.props.fetchSearchedNews) {
+    if (this.state.text !== this.props.searchText.text) { // check to prevent multiple backend calls if text is same
       this.props.fetchSearchedNews(this.state.text);
+      this.props.setSearchText(this.state.text);
     }
   }
 
@@ -66,6 +75,7 @@ class SearchBox extends React.PureComponent<SearchBoxProps, SearchBoxState> {
           placeholder="Search..."
           type="search"
           aria-label="search"
+          value={this.state.text}
           onChange={(event: any) => {
             this.setState({ text: event.target.value.trim() });
           }}
@@ -89,8 +99,17 @@ class SearchBox extends React.PureComponent<SearchBoxProps, SearchBoxState> {
   }
 }
 
-function mapDispatchToProps(dispatch: any) {
-  return bindActionCreators({ fetchSearchedNews, fetchNewsList }, dispatch);
+function mapStateToProps(state: any) {
+  return {
+    searchText: state.searchText
+  };
 }
 
-export default connect(null, mapDispatchToProps)(SearchBox);
+function mapDispatchToProps(dispatch: any) {
+  return bindActionCreators(
+    { fetchSearchedNews, fetchNewsList, setSearchText },
+    dispatch
+  );
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBox);

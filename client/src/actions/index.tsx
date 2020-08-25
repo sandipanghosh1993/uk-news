@@ -2,7 +2,8 @@ import {
   NEWS_LIST,
   SEARCHED_NEWS,
   DISPLAY_FULL_ARTICLE,
-  FULL_ARTICLE_CONTENT
+  FULL_ARTICLE_CONTENT,
+  SET_SEARCH_TEXT
 } from './types';
 import axios from 'axios';
 
@@ -108,5 +109,15 @@ export function resetContent() {
   return {
     type: FULL_ARTICLE_CONTENT,
     payload: null
+  };
+}
+
+/**
+ * Action creator to set search text
+ */
+export function setSearchText(text: string = '') {
+  return {
+    type: SET_SEARCH_TEXT,
+    payload: { text }
   };
 }

@@ -10,8 +10,9 @@ import News from './News';
  * Props received by NewsList
  */
 interface NewsListProps {
-  fetchNewsList?: Function;
-  newsList?: any;
+  fetchNewsList: Function;
+  newsList: any;
+  searchText: any;
 }
 
 /**
@@ -25,7 +26,7 @@ class NewsList extends React.PureComponent<NewsListProps, {}> {
   }
 
   public componentDidMount() {
-    if (this.props.fetchNewsList) {
+    if (!this.props.searchText?.text) {
       this.props.fetchNewsList();
     }
   }
@@ -62,7 +63,8 @@ class NewsList extends React.PureComponent<NewsListProps, {}> {
 
 function mapStateToProps(state: any) {
   return {
-    newsList: state.newsList
+    newsList: state.newsList,
+    searchText: state.searchText
   };
 }
 
