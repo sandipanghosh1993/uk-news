@@ -4,7 +4,7 @@ App to show the latest news from the United Kingdom
 
 ## Getting Started
 
-To get started make sure [node](https://nodejs.org/en/download/) is installed locally and then run `npm install` within this directory.
+To get started make sure [node](https://nodejs.org/en/download/) is installed locally and then run `npm install` within client and server directories.
 
 ## Available Scripts
 
