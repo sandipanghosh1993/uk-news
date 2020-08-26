@@ -45,7 +45,8 @@ class SearchBox extends React.PureComponent<SearchBoxProps, SearchBoxState> {
 
   public componentDidUpdate() {
     // populate the news list with latest news when search text is cleared
-    if (!this.state.text && this.props.searchText.text) {
+    const { text } = this.state;
+    if (!text.trim() && this.props.searchText.text) {
       this.props.fetchNewsList();
       this.props.setSearchText();
     }
@@ -53,13 +54,15 @@ class SearchBox extends React.PureComponent<SearchBoxProps, SearchBoxState> {
 
   public handleButtonPress(event: any) {
     event.preventDefault();
-    if (this.state.text !== this.props.searchText.text) { // check to prevent multiple backend calls if text is same
-      this.props.fetchSearchedNews(this.state.text);
-      this.props.setSearchText(this.state.text);
+    const { text } = this.state;
+    if (text.trim() !== this.props.searchText.text) { // check to prevent multiple backend calls if text is same
+      this.props.fetchSearchedNews(text.trim());
+      this.props.setSearchText(text.trim());
     }
   }
 
   public render() {
+    const { text } = this.state;
     return (
       <InputGroup className="searchbox">
         <InputGroup.Prepend>
@@ -77,7 +80,7 @@ class SearchBox extends React.PureComponent<SearchBoxProps, SearchBoxState> {
           aria-label="search"
           value={this.state.text}
           onChange={(event: any) => {
-            this.setState({ text: event.target.value.trim() });
+            this.setState({ text: event.target.value });
           }}
           onKeyPress={(event: any) => {
             if (event.charCode === 13 && event.target.value.trim()) {
@@ -87,7 +90,7 @@ class SearchBox extends React.PureComponent<SearchBoxProps, SearchBoxState> {
         />
         <InputGroup.Append>
           <Button
-            disabled={!this.state.text}
+            disabled={!text.trim()}
             variant="outline-secondary"
             onClick={this.handleButtonPress.bind(this)}
           >
